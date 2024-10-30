@@ -7,7 +7,7 @@ public class MachineSorter {
         machines.sort(Comparator.comparingDouble(WashingMachine::getPrice));
     }
 
-    public static void sortByReleaseDate(List<WashingMachine> machines) {
-        machines.sort(Comparator.comparing(WashingMachine::getReleaseDate));
+    public static void sortByReleaseDate(List<WashingMachine> machin) {
+        machin.sort(Comparator.comparing(WashingMachine::getReleaseDate));
     }
 }

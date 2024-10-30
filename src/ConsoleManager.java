@@ -1,22 +1,69 @@
 import java.util.Scanner;
+import java.sql.Date;
 
 public class ConsoleManager {
-    public WashingMachine createMachine() {
-        try (Scanner scanner = new Scanner(System.in)) {
-            System.out.print("Введите id: ");
-            int id = scanner.nextInt();
-            System.out.print("Введите модель: ");
-            String model = scanner.next();
-            System.out.print("Введите мощность: ");
-            int power = scanner.nextInt();
-            System.out.print("Введите максимальные обороты: ");
-            int maxRPM = scanner.nextInt();
-            System.out.print("Введите дату выпуска (yyyy-mm-dd): ");
-            String date = scanner.next();
-            System.out.print("Введите цену: ");
-            double price = scanner.nextDouble();
 
-            return new DomesticWashingMachine(id, model, power, maxRPM, java.sql.Date.valueOf(date), price);
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public WashingMachine createMachine() {
+        int id = readInt("ID");
+        String model = readString("модель");
+        int power = readInt("мощность");
+        int spinSpeed = readInt("максимальные обороты");
+        Date releaseDate = readDate("дату выпуска (YYYY-MM-DD)");
+        double price = readDouble("цену");
+
+        // Читаем тип машины и создаем нужный объект
+        String type = readString("тип (domestic или industrial)").toLowerCase();
+        if (type.equals("domestic")) {
+            return new DomesticWashingMachine(id, model, power, spinSpeed, releaseDate, price);
+        } else if (type.equals("industrial")) {
+            return new IndustrialWashingMachine(id, model, power, spinSpeed, releaseDate, price);
+        } else {
+            System.out.println("Некорректный тип машины. Используем тип по умолчанию (domestic).");
+            return new DomesticWashingMachine(id, model, power, spinSpeed, releaseDate, price);
+        }
+    }
+
+    // Чтение строки с консоли
+    private String readString(String prompt) {
+        System.out.print("Введите " + prompt + ": ");
+        return scanner.nextLine().trim();
+    }
+
+    // Чтение целого числа с обработкой исключений
+    private int readInt(String prompt) {
+        while (true) {
+            System.out.print("Введите " + prompt + ": ");
+            try {
+                return Integer.parseInt(scanner.nextLine().trim());
+            } catch (NumberFormatException e) {
+                System.out.println("Ошибка: Введите корректное целое число.");
+            }
+        }
+    }
+
+    // Чтение вещественного числа с обработкой исключений
+    private double readDouble(String prompt) {
+        while (true) {
+            System.out.print("Введите " + prompt + ": ");
+            try {
+                return Double.parseDouble(scanner.nextLine().trim());
+            } catch (NumberFormatException e) {
+                System.out.println("Ошибка: Введите корректное число.");
+            }
+        }
+    }
+
+    // Чтение даты с обработкой исключений
+    private Date readDate(String prompt) {
+        while (true) {
+            System.out.print("Введите " + prompt + ": ");
+            try {
+                return Date.valueOf(scanner.nextLine().trim());
+            } catch (IllegalArgumentException e) {
+                System.out.println("Ошибка: Введите дату в формате YYYY-MM-DD.");
+            }
         }
     }
 }

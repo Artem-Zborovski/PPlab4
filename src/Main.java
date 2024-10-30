@@ -1,19 +1,32 @@
 import java.util.ArrayList;
 import java.util.List;
-
+import java.io.FileWriter;
 public class Main {
     public static void main(String[] args) {
 
         MachineListStorage machineStorage = new MachineListStorage();
-        machineStorage.addMachine(new DomesticWashingMachine(1, "Model1", 1500, 1200, java.sql.Date.valueOf("2020-01-01"), 500.0));
-        machineStorage.addMachine(new IndustrialWashingMachine(2, "Model2", 3000, 1400, java.sql.Date.valueOf("2019-05-15"), 2000.0));
+        machineStorage.addMachine(new DomesticWashingMachine(1, "AlexApanchen", 5000, 2000, java.sql.Date.valueOf("2006-06-01"), 500.0));
+        machineStorage.addMachine(new IndustrialWashingMachine(2, "Lg", 3000, 1400, java.sql.Date.valueOf("2019-05-15"), 2000.0));
+        
 
         // 1. Чтение данных с консоли для создания новой машины
         ConsoleManager consoleManager = new ConsoleManager();
         WashingMachine newMachine = consoleManager.createMachine();
         machineStorage.addMachine(newMachine);
 
-        // 2. Запись машин в текстовый файл
+        // 2.Чтение и запись машин в текстовый файл
+        try {
+            // Чтение данных из файла и добавление в хранилище
+            List<WashingMachine> machinesFromFile = FileManager.readMachinesFromFile("machin.txt");
+            machinesFromFile.forEach(machineStorage::addMachine);
+
+            System.out.println("Машины, прочитанные из файла:");
+            machineStorage.getMachines().forEach(System.out::println);
+            
+
+        } catch (Exception e) {
+            System.out.println("Ошибка чтения данных из файла: " + e.getMessage());
+        }
         try {
             List<String> lines = new ArrayList<>();
             for (WashingMachine machine : machineStorage.getMachines()) {
@@ -29,6 +42,11 @@ public class Main {
         MachineSorter.sortByPrice(machinesList);  
         System.out.println("Сортировка по цене:");
         machinesList.forEach(System.out::println);  
+
+        List<WashingMachine> machinList = machineStorage.getMachines();
+        MachineSorter.sortByReleaseDate(machinesList);
+        System.out.println("Сортировка по дате выпуска:");
+        machinesList.forEach(System.out::println); 
 
         // 4. Шифрование данных
         try {
@@ -51,10 +69,11 @@ public class Main {
 
         // 6. Чтение/запись данных в/из XML
         try {
-            XMLManager.writeMachinesToXML(machinesList, "machines.xml");  // Передаем список, а не массив
-            System.out.println("Машины записаны в XML файл.");
+           // XMLManager.writeMachinesToXML(machinesList, "machines.xml");  // Передаем список, а не массив
+            //System.out.println("Машины записаны в XML файл.");
 
             List<WashingMachine> machinesFromXML = XMLReader.readMachinesFromXML("machines.xml");
+
             System.out.println("Машины, прочитанные из XML:");
             machinesFromXML.forEach(System.out::println);
         } catch (Exception e) {
@@ -63,10 +82,11 @@ public class Main {
 
         // 7. Чтение/запись данных в/из JSON
         try {
-            JSONManager.writeMachinesToJSON(machinesList, "machines.json");  // Передаем список, а не массив
-            System.out.println("Машины записаны в JSON файл.");
+            //JSONManager.writeMachinesToJSON(machinesList, "machines.json");  // Передаем список, а не массив
+            //System.out.println("Машины записаны в JSON файл.");
 
             List<WashingMachine> machinesFromJSON = JSONReader.readMachinesFromJSON("machines.json");
+
             System.out.println("Машины, прочитанные из JSON:");
             machinesFromJSON.forEach(System.out::println);
         } catch (Exception e) {

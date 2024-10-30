@@ -1,5 +1,16 @@
-import java.util.Date;
+import java.sql.Date;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.PROPERTY, 
+    property = "type"
+)
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = DomesticWashingMachine.class, name = "Domestic"),
+    @JsonSubTypes.Type(value = IndustrialWashingMachine.class, name = "Industrial")
+})
 public abstract class WashingMachine {
     protected int id;
     protected String type;
@@ -9,6 +20,7 @@ public abstract class WashingMachine {
     protected Date releaseDate;
     protected double price;
 
+    public WashingMachine() {}
     public WashingMachine(int id, String type, String model, int power, int maxSpeed, Date releaseDate, double price) {
         this.id = id;
         this.type = type;

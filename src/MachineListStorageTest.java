@@ -15,7 +15,7 @@ public class MachineListStorageTest {
 
     @Test
     public void testAddMachine() {
-        WashingMachine machine = new DomesticWashingMachine(1, "Model1", 1500, 1200, Date.valueOf("2020-01-01"), 500.0);
+        WashingMachine machine = new DomesticWashingMachine(1, "AlexApanchen", 5000, 2000, Date.valueOf("2006-06-01"), 500.0);
         machineStorage.addMachine(machine);
 
         List<WashingMachine> machines = machineStorage.getMachines();
@@ -27,8 +27,8 @@ public class MachineListStorageTest {
 
     @Test
     public void testGetMachines() {
-        WashingMachine machine1 = new DomesticWashingMachine(1, "Model1", 1500, 1200, Date.valueOf("2020-01-01"), 500.0);
-        WashingMachine machine2 = new IndustrialWashingMachine(2, "Model2", 3000, 1400, Date.valueOf("2019-05-15"), 2000.0);
+        WashingMachine machine1 = new DomesticWashingMachine(1, "AlexApanchen", 5000, 2000, Date.valueOf("2006-06-01"), 500.0);
+        WashingMachine machine2 = new IndustrialWashingMachine(2, "g", 3000, 1400, Date.valueOf("2019-05-15"), 2000.0);
 
         machineStorage.addMachine(machine1);
         machineStorage.addMachine(machine2);
