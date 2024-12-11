@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <WashingMachines>
     <WashingMachine>
-        <id>213</id>
+        <id>23</id>
         <type>Domestic</type>
-        <model>djkvhgd</model>
-        <power>12321</power>
-        <maxSpeed>1232</maxSpeed>
-        <releaseDate>2000-04-01</releaseDate>
-        <price>9992.0</price>
+        <model>123</model>
+        <power>234</power>
+        <maxSpeed>324</maxSpeed>
+        <releaseDate>2000-02-02</releaseDate>
+        <price>123.0</price>
     </WashingMachine>
     <WashingMachine>
         <id>1</id>
@@ -19,6 +19,15 @@
         <price>500.0</price>
     </WashingMachine>
     <WashingMachine>
+        <id>3122</id>
+        <type>Domestic</type>
+        <model>Model3</model>
+        <power>3</power>
+        <maxSpeed>66</maxSpeed>
+        <releaseDate>2018-05-15</releaseDate>
+        <price>2009.0</price>
+    </WashingMachine>
+    <WashingMachine>
         <id>2</id>
         <type>Industrial</type>
         <model>Lg</model>
@@ -28,7 +37,16 @@
         <price>2000.0</price>
     </WashingMachine>
     <WashingMachine>
-        <id>1</id>
+        <id>212</id>
+        <type>Domestic</type>
+        <model>Model2</model>
+        <power>3000</power>
+        <maxSpeed>1400</maxSpeed>
+        <releaseDate>2019-05-15</releaseDate>
+        <price>2000.0</price>
+    </WashingMachine>
+    <WashingMachine>
+        <id>12</id>
         <type>Domestic</type>
         <model>Model1</model>
         <power>1500</power>

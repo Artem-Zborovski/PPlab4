@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
     @JsonSubTypes.Type(value = DomesticWashingMachine.class, name = "Domestic"),
     @JsonSubTypes.Type(value = IndustrialWashingMachine.class, name = "Industrial")
 })
+
 public abstract class WashingMachine {
     protected int id;
     protected String type;

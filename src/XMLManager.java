@@ -48,4 +48,9 @@ public class XMLManager {
         element.appendChild(doc.createTextNode(value));
         return element;
     }
+
+    public static List<WashingMachine> readMachinesFromXML(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'readMachinesFromXML'");
+    }
 }

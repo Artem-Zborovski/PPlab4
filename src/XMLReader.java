@@ -17,7 +17,7 @@ public class XMLReader {
         Document document = builder.parse(xmlFile);
         document.getDocumentElement().normalize();
         
-        NodeList nodeList = document.getElementsByTagName("machine");
+        NodeList nodeList = document.getElementsByTagName("WashingMachine");
         
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
@@ -27,12 +27,12 @@ public class XMLReader {
                 int id = Integer.parseInt(element.getElementsByTagName("id").item(0).getTextContent());
                 String model = element.getElementsByTagName("model").item(0).getTextContent();
                 int power = Integer.parseInt(element.getElementsByTagName("power").item(0).getTextContent());
-                int maxRPM = Integer.parseInt(element.getElementsByTagName("maxRPM").item(0).getTextContent());
+                int maxSpeed = Integer.parseInt(element.getElementsByTagName("maxSpeed").item(0).getTextContent());
                 Date releaseDate = java.sql.Date.valueOf(element.getElementsByTagName("releaseDate").item(0).getTextContent());
                 double price = Double.parseDouble(element.getElementsByTagName("price").item(0).getTextContent());
 
                 // Допустим, создаем DomesticWashingMachine
-                machines.add(new DomesticWashingMachine(id, model, power, maxRPM, releaseDate, price));
+                machines.add(new DomesticWashingMachine(id, model, power, maxSpeed, releaseDate, price));
             }
         }
         return machines;
